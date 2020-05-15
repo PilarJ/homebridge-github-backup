@@ -1,0 +1,39 @@
+{
+  "name": "homebridge-github-backup",
+  "version": "1.0.0",
+  "description": "Automatic backup Homebridge configs to Github",
+  "main": "src/index.js",
+  "scripts": {},
+  "author": "Jakub Pilař <pilarjakub@centrum.cz>",
+  "keywords": [
+    "github",
+    "homebridge",
+    "homebridge-plugin",
+    "home-automation",
+    "smartbridge"
+  ],
+  "engines": {
+    "homebridge": ">=1.0.0"
+  },
+  "license": "ISC",
+  "files": [
+    "LICENSE",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PilarJ/homebridge-github-backup.git"
+  },
+  "devDependencies": {
+    "@types/node": "10.17.19",
+    "homebridge": "^1.0.4"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.4",
+    "simple-git": "^2.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/PilarJ/homebridge-github-backup/issues"
+  },
+  "homepage": "https://github.com/PilarJ/homebridge-github-backup#readme"
+}
