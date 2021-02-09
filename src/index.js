@@ -70,9 +70,13 @@ class Backuper {
 		const email = this.config.githubEmail;
 		const name = this.config.githubName;
 		const filesToBackup = this.config.filesToBackup;
-		const branch = this.config.branch || 'master';
+		const branch = this.config.branch || 'main';
+		const connectMethod  = this.config.connectMethod || "https";
 
-		const gitHubUrl = `https://${username}:${password}@github.com/${repo}`;
+		let gitHubUrl = `https://${username}:${password}@github.com/${repo}`;
+		if(connectMethod == 'ssh'){
+			gitHubUrl = `git@github.com:${repo}`;
+		}
 
 		if (!filesToBackup || !Array.isArray(filesToBackup)) {
 			this.log.error('Missing array filesToBackup in config.');
@@ -92,6 +96,7 @@ class Backuper {
 			.then(() => simpleGitPromise.addConfig('user.name', name))
 			.then(() => simpleGitPromise.fetch())
 			.then(() => simpleGitPromise.pull(originName, branch, {'--ff': null}))
+			.then(() => simpleGitPromise.branch(['-M', `${branch}`]))
 			.then(() => simpleGitPromise.reset('hard', `${originName}/${branch}`))
 			.then(
 				// copy files to backup
